@@ -54,14 +54,14 @@ import { Movie } from 'src/app/models/movie.i';
 export class HomePage implements OnInit {
   private data = inject(DataService);
 
-  public selectedGenreId: number | null = null;
+  public selectedGenreId?: number = undefined;
 
   constructor() {}
 
   async ngOnInit() {
     try {
       await this.data.getGenres();
-      await this.data.getMovies();
+      await this.data.getInitialMovies();
     } catch (error) {
       console.error('Home page error!', error);
       throw error;
@@ -83,7 +83,11 @@ export class HomePage implements OnInit {
   }
 
   selectGenre(id: number) {
-    console.log(id);
-    this.selectedGenreId = id;
+    this.selectedGenreId = this.selectedGenreId === id ? undefined : id;
+    this.data.getInitialMovies(this.selectedGenreId);
+  }
+
+  loadMoreMovies() {
+    this.data.getMoreMovies(this.selectedGenreId);
   }
 }

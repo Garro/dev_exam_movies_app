@@ -31,13 +31,18 @@ export class ApiEndpoint {
    */
   static discoverMovie(
     page: number = 1,
-    sortBy?: ApiSortBy,
-    language?: ApiLanguage
+    language?: ApiLanguage,
+    withGenre?: number,
+    sortBy?: ApiSortBy
   ): string {
     let url = `${this.domain}/discover/movie?page=${page}`;
 
     if (sortBy) {
       url = url.concat(`&sort_by=${sortBy}`);
+    }
+
+    if (withGenre) {
+      url = url.concat(`&with_genres=${withGenre}`);
     }
 
     if (language) {

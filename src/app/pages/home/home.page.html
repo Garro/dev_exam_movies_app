@@ -30,7 +30,7 @@
     <app-movie *ngFor="let movie of getMovieList()" [movie]="movie"></app-movie>
   </ion-list>
 
-  <ion-button>Load More</ion-button>
+  <ion-button (click)="loadMoreMovies()">Load More</ion-button>
 
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button class="watchlist-fab-button"> Watch List </ion-fab-button>

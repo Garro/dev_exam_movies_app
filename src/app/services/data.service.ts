@@ -8,25 +8,39 @@ import { Movie } from '../models/movie.i';
   providedIn: 'root',
 })
 export class DataService {
-  public movieList: Movie[] = [];
-  public lastPageAccessed = 0;
+  private lastPageAccessed = 1;
 
+  public movieList: Movie[] = [];
   public genreList: Genre[] = [];
 
   constructor(private httpService: HttpService) {}
 
-  public async getMovies(page: number = 1) {
+  private async getMovies(genre?: number): Promise<Movie[]> {
     try {
       const response = await this.httpService.request(
         HttpMethod.get,
-        ApiEndpoint.discoverMovie(page, undefined, ApiLanguage.English)
+        ApiEndpoint.discoverMovie(
+          this.lastPageAccessed,
+          ApiLanguage.English,
+          genre
+        )
       );
 
-      this.movieList = response.data.results;
-      this.lastPageAccessed = response.data.page;
+      return response.data.results;
     } catch (error) {
       console.error('Error getting config', error);
     }
+    return [];
+  }
+
+  public async getInitialMovies(genre?: number) {
+    this.lastPageAccessed = 1;
+    this.movieList = await this.getMovies(genre);
+  }
+
+  public async getMoreMovies(genre?: number) {
+    this.lastPageAccessed++;
+    this.movieList = this.movieList.concat(await this.getMovies(genre));
   }
 
   public async getGenres() {
