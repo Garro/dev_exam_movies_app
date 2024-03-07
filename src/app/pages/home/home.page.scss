@@ -1,0 +1,16 @@
+.flex-content {
+  display: flex;
+  flex: auto;
+  overflow: auto;
+}
+
+.flex-scroll-list {
+  margin: 12px 0px;
+  display: flex;
+  min-height: min-content;
+}
+
+ion-fab-button {
+  --border-radius: 12px;
+  width: 128px;
+}

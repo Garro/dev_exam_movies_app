@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <h1>Movie DB App</h1>
+
+    <h3>Find your movies</h3>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h3>Categories</h3>
+  <div class="flex-content">
+    <div class="flex-scroll-list">
+      <ion-button>Top Rated</ion-button>
+      <ion-button>Popular</ion-button>
+      <ion-button>Action</ion-button>
+      <ion-button>Action</ion-button>
+      <ion-button>Action</ion-button>
+      <ion-button>Action</ion-button>
+    </div>
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <app-message
+      *ngFor="let message of getMessages()"
+      [message]="message"
+    ></app-message>
+  </ion-list>
+
+  <ion-button>Load More</ion-button>
+
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button class="watchlist-fab-button">
+      Watch List <ion-icon name="wishlist"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
