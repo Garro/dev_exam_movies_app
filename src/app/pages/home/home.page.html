@@ -11,12 +11,14 @@
   <h3>Categories</h3>
   <div class="flex-content">
     <div class="flex-scroll-list">
-      <ion-button>Top Rated</ion-button>
-      <ion-button>Popular</ion-button>
-      <ion-button>Action</ion-button>
-      <ion-button>Action</ion-button>
-      <ion-button>Action</ion-button>
-      <ion-button>Action</ion-button>
+      <ion-button
+        *ngFor="let genre of getGenreList()"
+        [id]="'genre-button-' + genre.id"
+        [color]="(selectedGenreId === genre.id) ? 'primary' : 'secondary'"
+        (click)="selectGenre(genre.id)"
+      >
+        {{genre.name}}
+      </ion-button>
     </div>
   </div>
 
@@ -25,17 +27,12 @@
   </ion-refresher>
 
   <ion-list>
-    <app-message
-      *ngFor="let message of getMessages()"
-      [message]="message"
-    ></app-message>
+    <app-movie *ngFor="let movie of getMovieList()" [movie]="movie"></app-movie>
   </ion-list>
 
-  <ion-button>Load More</ion-button>
+  <ion-button (click)="loadMoreMovies()">Load More</ion-button>
 
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
-    <ion-fab-button class="watchlist-fab-button">
-      Watch List <ion-icon name="wishlist"></ion-icon>
-    </ion-fab-button>
+    <ion-fab-button class="watchlist-fab-button"> Watch List </ion-fab-button>
   </ion-fab>
 </ion-content>

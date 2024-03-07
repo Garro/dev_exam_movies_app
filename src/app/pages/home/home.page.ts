@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   RefresherCustomEvent,
   IonHeader,
@@ -19,9 +19,11 @@ import {
   IonFab,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { MessageComponent } from '../message/message.component';
+import { MovieComponent } from '../../components/movie/movie.component';
 
-import { DataService, Message } from '../../services/data.service';
+import { DataService } from '../../services/data.service';
+import { Genre } from 'src/app/models/genre.i';
+import { Movie } from 'src/app/models/movie.i';
 
 @Component({
   selector: 'app-home',
@@ -46,12 +48,25 @@ import { DataService, Message } from '../../services/data.service';
     IonRefresher,
     IonRefresherContent,
     IonList,
-    MessageComponent,
+    MovieComponent,
   ],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   private data = inject(DataService);
+
+  public selectedGenreId?: number = undefined;
+
   constructor() {}
+
+  async ngOnInit() {
+    try {
+      await this.data.getGenres();
+      await this.data.getInitialMovies();
+    } catch (error) {
+      console.error('Home page error!', error);
+      throw error;
+    }
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -59,7 +74,20 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  getMovieList(): Movie[] {
+    return this.data.movieList;
+  }
+
+  getGenreList(): Genre[] {
+    return this.data.genreList;
+  }
+
+  selectGenre(id: number) {
+    this.selectedGenreId = this.selectedGenreId === id ? undefined : id;
+    this.data.getInitialMovies(this.selectedGenreId);
+  }
+
+  loadMoreMovies() {
+    this.data.getMoreMovies(this.selectedGenreId);
   }
 }
