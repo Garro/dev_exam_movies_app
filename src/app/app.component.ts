@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { HttpMethod, HttpService } from './services/http.service';
-import { ApiEndpoint } from './data/endpoints';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,5 @@ import { ApiEndpoint } from './data/endpoints';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor(private httpService: HttpService) {}
-
-  init() {
-    this.httpService.request(HttpMethod.get, ApiEndpoint.authenticate(''));
-  }
+  constructor() {}
 }

@@ -5,6 +5,7 @@ import {
   HttpOptions,
   HttpParams,
 } from '@capacitor/core';
+import { environment } from 'src/environments/environment';
 
 export const enum HttpMethod {
   'post',
@@ -17,14 +18,12 @@ export const enum HttpMethod {
   providedIn: 'root',
 })
 export class HttpService {
-  public async request(
-    method: HttpMethod,
-    url: string,
-    headers?: HttpHeaders,
-    body?: any,
-    params?: HttpParams
-  ) {
-    const options: HttpOptions = { url, headers, data: body, params };
+  public async request(method: HttpMethod, url: string, body?: any) {
+    const options: HttpOptions = {
+      url,
+      headers: this.buildHeaders(),
+      data: body,
+    };
 
     switch (method) {
       case HttpMethod.get:
@@ -36,5 +35,12 @@ export class HttpService {
       case HttpMethod.delete:
         return CapacitorHttp.delete(options);
     }
+  }
+
+  private buildHeaders(): HttpHeaders {
+    return {
+      accept: 'application/json',
+      Authorization: `Bearer ${environment.api.accessToken}`,
+    };
   }
 }
