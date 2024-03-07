@@ -67,3 +67,19 @@ ion-footer ion-title {
   font-size: 11px;
   font-weight: normal;
 }
+
+.transparency {
+  --background: transparent;
+}
+
+img{
+  border-radius: 10%;
+}
+
+.ion-col-padding{
+  padding-right: 0px;
+}
+
+.movie-size{
+  width: 50%;
+}
