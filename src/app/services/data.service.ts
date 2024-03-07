@@ -16,16 +16,21 @@ export class DataService {
 
   constructor(private httpService: HttpService) {}
 
-  private async getMovies(genre?: number): Promise<Movie[]> {
-    try {
-      const response = await this.httpService.request(
-        HttpMethod.get,
-        ApiEndpoint.discoverMovie(
+  private async getMovies(genre?: number, search?: string): Promise<Movie[]> {
+    const url = search
+      ? ApiEndpoint.searchMovie(
+          this.lastPageAccessed,
+          search,
+          ApiLanguage.English
+        )
+      : ApiEndpoint.discoverMovie(
           this.lastPageAccessed,
           ApiLanguage.English,
           genre
-        )
-      );
+        );
+
+    try {
+      const response = await this.httpService.request(HttpMethod.get, url);
 
       return response.data.results;
     } catch (error) {
@@ -34,14 +39,14 @@ export class DataService {
     }
   }
 
-  public async getInitialMovies(genre?: number) {
+  public async getInitialMovies(genre?: number, search?: string) {
     this.lastPageAccessed = 1;
-    this.movieList = await this.getMovies(genre);
+    this.movieList = await this.getMovies(genre, search);
   }
 
-  public async getMoreMovies(genre?: number) {
+  public async getMoreMovies(genre?: number, search?: string) {
     this.lastPageAccessed++;
-    this.movieList = this.movieList.concat(await this.getMovies(genre));
+    this.movieList = this.movieList.concat(await this.getMovies(genre, search));
   }
 
   public async getGenres() {

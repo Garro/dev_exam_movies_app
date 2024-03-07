@@ -61,6 +61,7 @@ export class HomePage implements OnInit {
   }
 
   public selectedGenreId?: number = undefined;
+  public searchValue: string = '';
 
   async ngOnInit() {
     try {
@@ -91,7 +92,18 @@ export class HomePage implements OnInit {
     this.data.getInitialMovies(this.selectedGenreId);
   }
 
+  searchbar(event: any) {
+    console.log(event.target?.value);
+    if (event.target?.value) {
+      this.selectedGenreId = undefined;
+      this.searchValue = event.target.value;
+    } else {
+      this.searchValue = '';
+    }
+    this.data.getInitialMovies(this.selectedGenreId, this.searchValue);
+  }
+
   loadMoreMovies() {
-    this.data.getMoreMovies(this.selectedGenreId);
+    this.data.getMoreMovies(this.selectedGenreId, this.searchValue);
   }
 }

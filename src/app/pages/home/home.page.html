@@ -4,7 +4,11 @@
 
     <div class="second-title-padding"><h3>Find your movies</h3></div>
 
-    <ion-searchbar placeholder="Search Here ..." color=""></ion-searchbar>
+    <ion-searchbar
+      placeholder="Search Here ..."
+      (ionChange)="searchbar($event)"
+      color=""
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

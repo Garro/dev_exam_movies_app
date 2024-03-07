@@ -39,6 +39,19 @@ export class ApiEndpoint {
     return url;
   }
 
+  /**
+   * Search for movies by their original, translated and alternative titles.
+   */
+  static searchMovie(page: number = 1, query: string, language?: ApiLanguage) {
+    let url = `${this.domain}/search/movie?query=${query}&page=${page}`;
+
+    if (language) {
+      url = url.concat(`&language=${language}`);
+    }
+
+    return url;
+  }
+
   static movieDetails(id: number, language?: ApiLanguage): string {
     let url = `${this.domain}/movie/${id}`;
 
