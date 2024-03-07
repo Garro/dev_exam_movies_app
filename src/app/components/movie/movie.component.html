@@ -4,14 +4,14 @@
   [detail]="false"
   [id]="'movie-item-id-' + movie.id"
 >
-  <ion-grid>
+  <ion-grid  class="transparency">
     <ion-row>
-      <ion-col>
+      <ion-col size="5" class="movie-size">
         <img id="movie-poster" [src]="getImage(movie.poster_path)" />
       </ion-col>
-      <ion-col>
+      <ion-col size="5" class="ion-col-padding">
         <p id="movie-title-label">Title:</p>
-        <p id="movie-title">{{ movie.original_title }}</p>
+        <p class="movie-name-overflow" id="movie-title">{{ movie.original_title }}</p>
 
         <p id="movie-release-date-label">Release Date:</p>
         <p id="movie-release-date">{{ movie.release_date }}</p>
@@ -19,12 +19,12 @@
         <p id="movie-rating-label">Average Rating:</p>
         <p id="movie-rating">{{ movie.vote_average }}</p>
       </ion-col>
-      <ion-col>
-        <ion-button id="add-watchlist-button" name="bookmark">
-          Bookmark
+      <ion-col size="2">
+        <ion-button class="transparency" id="add-watchlist-button">
+          <ion-icon src="../../../assets/icon/bookmark.svg" size="large"></ion-icon>
         </ion-button>
         <br />
-        <ion-button name="review-button">Star</ion-button>
+        <ion-button class="transparency" name="review-button"> <ion-icon src="../../../assets/icon/star.svg" size="large"></ion-icon></ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
