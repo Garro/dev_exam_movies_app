@@ -1,19 +1,14 @@
-export class ApiEndpoint {
-  /**
-   * Guest sessions are a special kind of session that give you some of the functionality of an
-   * account, but not all. For example, some of the things you can do with a guest session are;
-   * maintain a rated list, a watchlist and a favourite list.
-   *
-   * Guest sessions will automatically be deleted if they are not used within 60 minutes of it
-   * being issued.
-   * @link https://developer.themoviedb.org/reference/authentication-create-guest-session
-   */
-  static newGuestSession(): string {
-    return 'authentication/guest_session/new';
-  }
+import { environment } from 'src/environments/environment';
 
-  static authenticate(requestToken: string): string {
-    return `https://www.themoviedb.org/authenticate/${requestToken}`;
+export class ApiEndpoint {
+  private static domain = environment.domain;
+
+  /**
+   * The data returned here in the configuration endpoint is designed to provide
+   * some of the required information you'll need as you integrate our API.
+   */
+  static configurationDetails() {
+    return `${this.domain}/configuration`;
   }
 
   /**
@@ -21,14 +16,45 @@ export class ApiEndpoint {
    * @param language Sets a specific Language param.
    * @link https://developer.themoviedb.org/reference/genre-movie-list
    */
-  static genreMovieList(language?: Language): string {
-    const url = 'genre/movie/list';
+  static genreMovieList(language?: ApiLanguage): string {
+    const url = `${this.domain}/genre/movie/list`;
     return language ? url.concat(`?language=${language}`) : url;
+  }
+
+  /**
+   * If you specify the region parameter, the regional release date will be used
+   * instead of the primary release date. The date returned will be the first date
+   * based on your query (ie. if a with_release_type is specified). It's important to note the order of the release types that are used. Specifying 2|3 would return the limited theatrical release date as opposed to 3|2 which would return the theatrical date.
+   * @param page Page to retrieve
+   * @param sortBy Sorting param
+   * @param language Language param
+   */
+  static discoverMovie(
+    page: number = 1,
+    sortBy?: ApiSortBy,
+    language?: ApiLanguage
+  ): string {
+    let url = `${this.domain}/discover/movie?page=${page}`;
+
+    if (sortBy) {
+      url = url.concat(`&sort_by=${sortBy}`);
+    }
+
+    if (language) {
+      url = url.concat(`&lannguage=${language}`);
+    }
+
+    return url;
   }
 }
 
-export const enum Language {
+export const enum ApiLanguage {
   English = 'en',
   Spanish = 'es',
   French = 'fr',
+}
+
+// TODO List Sorting Category for Movie Discovert.
+export const enum ApiSortBy {
+  popularityDescend = 'popularity.desc',
 }

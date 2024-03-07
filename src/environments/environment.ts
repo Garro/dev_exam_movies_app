@@ -2,10 +2,17 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { secrets } from './.keys';
+
 export const environment = {
   production: false,
 
-  domain: 'https://api.themoviedb.org/4/',
+  domain: 'https://api.themoviedb.org/3',
+
+  api: {
+    key: secrets.keys,
+    accessToken: secrets.accessToken,
+  },
 };
 
 /*

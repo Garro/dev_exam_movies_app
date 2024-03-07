@@ -1,0 +1,31 @@
+<ion-item
+  *ngIf="movie"
+  [routerLink]="'/movie/' + movie.id"
+  [detail]="false"
+  [id]="'movie-item-id-' + movie.id"
+>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img id="movie-poster" [src]="getImage(movie.poster_path)" />
+      </ion-col>
+      <ion-col>
+        <p id="movie-title-label">Title:</p>
+        <p id="movie-title">{{ movie.original_title }}</p>
+
+        <p id="movie-release-date-label">Release Date:</p>
+        <p id="movie-release-date">{{ movie.release_date }}</p>
+
+        <p id="movie-rating-label">Average Rating:</p>
+        <p id="movie-rating">{{ movie.vote_average }}</p>
+      </ion-col>
+      <ion-col>
+        <ion-button id="add-watchlist-button" name="bookmark">
+          Bookmark
+        </ion-button>
+        <br />
+        <ion-button name="review-button">Star</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
