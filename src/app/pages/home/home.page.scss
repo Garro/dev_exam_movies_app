@@ -2,6 +2,8 @@
   display: flex;
   flex: auto;
   overflow: auto;
+  padding-left: 18px;
+  padding-bottom: 12px;
 }
 
 .flex-scroll-list {
@@ -13,4 +15,54 @@
 ion-fab-button {
   --border-radius: 12px;
   width: 128px;
+  --background: var(--ion-color-success-tint)
+}
+
+.title-padding{
+  padding: 12px;
+  padding-left: 24px;
+  padding-top: 32px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.second-title-padding{
+  padding-bottom: 8px;
+}
+
+h3 {
+  padding-left: 24px;
+}
+
+ion-searchbar {
+  padding-left: 24px;
+  padding-right: 24px;
+} 
+
+ion-button{
+  padding-right: 8px;
+}
+
+.fab-font{
+  font-size: 16px;
+}
+
+.fab-padding{
+padding-bottom: 30px;
+}
+ion-fab {
+padding-bottom: 18px;
+padding-right: 24px;
+}
+
+.footer-button{
+  --background: transparent;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-bottom: 30px;
+  font-weight: bolder;
+  font-size: 18px;
 }

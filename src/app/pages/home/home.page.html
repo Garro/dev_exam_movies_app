@@ -1,9 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <h1>Movie DB App</h1>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar >
+    <div class="title-padding"><h1>Movie DB App</h1></div>
 
-    <h3>Find your movies</h3>
-    <ion-searchbar></ion-searchbar>
+    <div class="second-title-padding"><h3>Find your movies</h3></div>
+   
+    <ion-searchbar placeholder="Search Here ..." color=""></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -11,12 +12,12 @@
   <h3>Categories</h3>
   <div class="flex-content">
     <div class="flex-scroll-list">
-      <ion-button>Top Rated</ion-button>
-      <ion-button>Popular</ion-button>
-      <ion-button>Action</ion-button>
-      <ion-button>Action</ion-button>
-      <ion-button>Action</ion-button>
-      <ion-button>Action</ion-button>
+      <ion-button shape="round">Top Rated</ion-button>
+      <ion-button shape="round">Popular</ion-button>
+      <ion-button shape="round">Action</ion-button>
+      <ion-button shape="round">Horror</ion-button>
+      <ion-button shape="round">Psy-fi</ion-button>
+      <ion-button shape="round">Comedy</ion-button>
     </div>
   </div>
 
@@ -31,11 +32,14 @@
     ></app-message>
   </ion-list>
 
-  <ion-button>Load More</ion-button>
+  <ion-button class="footer-button">Load More</ion-button>
 
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
-    <ion-fab-button class="watchlist-fab-button">
-      Watch List <ion-icon name="wishlist"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-fab-button class="fab-font">
+    Watch List<ion-icon name="bookmarkOutline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+  
+  
 </ion-content>

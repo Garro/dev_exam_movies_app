@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { bookmarkOutline } from 'ionicons/icons';
 import {
   RefresherCustomEvent,
   IonHeader,
@@ -51,7 +53,9 @@ import { DataService, Message } from '../../services/data.service';
 })
 export class HomePage {
   private data = inject(DataService);
-  constructor() {}
+  constructor() {
+    addIcons({bookmarkOutline});
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
