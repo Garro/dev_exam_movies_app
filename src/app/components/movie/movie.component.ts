@@ -18,9 +18,9 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { star, starOutline, bookmark, bookmarkOutline } from 'ionicons/icons';
-import { AssetsUrl, PosterSize } from 'src/app/data/assets_url';
+import { star, bookmark } from 'ionicons/icons';
 import { Movie } from 'src/app/models/movie.i';
+import { getPosterUrl } from 'src/app/util/get-asset-url';
 
 @Component({
   selector: 'app-movie',
@@ -42,6 +42,7 @@ import { Movie } from 'src/app/models/movie.i';
   ],
 })
 export class MovieComponent {
+  [x: string]: any;
   private platform = inject(Platform);
 
   @Input() movie?: Movie;
@@ -54,7 +55,7 @@ export class MovieComponent {
     addIcons({ star, bookmark });
   }
 
-  getImage(id: string): string {
-    return `${AssetsUrl.BASE_URL}/${PosterSize.w154}${id}`;
+  getPoster(path: string) {
+    return getPosterUrl(path);
   }
 }

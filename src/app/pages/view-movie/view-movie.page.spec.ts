@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { ViewMessagePage } from './view-message.page';
+import { ViewMoviePage } from './view-movie.page';
 
 describe('ViewMessagePage', () => {
-  let component: ViewMessagePage;
-  let fixture: ComponentFixture<ViewMessagePage>;
+  let component: ViewMoviePage;
+  let fixture: ComponentFixture<ViewMoviePage>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [ViewMessagePage],
+      imports: [ViewMoviePage],
       providers: [provideRouter([])],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ViewMessagePage);
+    fixture = TestBed.createComponent(ViewMoviePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

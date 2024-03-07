@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true" *ngIf="movie">
+  <ion-img id="movie-backdrop-image" [src]="getBanner(movie.backdrop_path)" />
+
+  <div>
+    <ion-img
+      id="movie-poster-image"
+      [src]="getPoster(movie.poster_path)"
+    ></ion-img>
+    <h2 id="movie-title">{{movie.title}}</h2>
+  </div>
+
+  <div>
+    <ion-button *ngFor="let genre of movie.genres">{{genre.name}}</ion-button>
+  </div>
+
+  <div>
+    <ion-button>About Movie</ion-button>
+    <ion-button>Reviews</ion-button>
+  </div>
+
+  <div class="ion-padding">
+    <h3>Overview</h3>
+    <p>{{movie.overview}}</p>
+
+    <h3>Release Date</h3>
+    <p>{{movie.release_date}}</p>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <h3>Average Rating</h3>
+          <p>{{movie.vote_average}}</p>
+        </ion-col>
+        <ion-col>
+          <h3>Rate Count</h3>
+          <p>{{movie.vote_count}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <h3>Popularity</h3>
+    <p>{{movie.popularity}}</p>
+  </div>
+  <div>
+    <ion-button slot="start"> Back </ion-button>
+  </div>
+</ion-content>

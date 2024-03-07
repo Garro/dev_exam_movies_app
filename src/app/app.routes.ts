@@ -7,11 +7,9 @@ export const routes: Routes = [
       import('./pages/home/home.page').then((m) => m.HomePage),
   },
   {
-    path: 'message/:id',
+    path: 'movie/:id',
     loadComponent: () =>
-      import('./pages/view-message/view-message.page').then(
-        (m) => m.ViewMessagePage
-      ),
+      import('./pages/view-movie/view-movie.page').then((m) => m.ViewMoviePage),
   },
   {
     path: '',

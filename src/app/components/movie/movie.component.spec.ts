@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { ViewMessagePage } from '../../pages/view-message/view-message.page';
+import { ViewMoviePage } from '../../pages/view-movie/view-movie.page';
 
 import { MovieComponent } from './movie.component';
 
@@ -10,7 +10,7 @@ describe('MessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MovieComponent, ViewMessagePage],
+      imports: [MovieComponent, ViewMoviePage],
       providers: [provideRouter([])],
     }).compileComponents();
 

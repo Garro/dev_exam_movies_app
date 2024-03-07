@@ -3,6 +3,7 @@ import { HttpMethod, HttpService } from './http.service';
 import { ApiEndpoint, ApiLanguage } from '../data/endpoints';
 import { Genre } from '../models/genre.i';
 import { Movie } from '../models/movie.i';
+import { MovieDetails } from '../models/movie-details.i';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,8 @@ import { Movie } from '../models/movie.i';
 export class DataService {
   private lastPageAccessed = 1;
 
-  public movieList: Movie[] = [];
-  public genreList: Genre[] = [];
+  public movieList!: Movie[];
+  public genreList!: Genre[];
 
   constructor(private httpService: HttpService) {}
 
@@ -29,8 +30,8 @@ export class DataService {
       return response.data.results;
     } catch (error) {
       console.error('Error getting config', error);
+      throw error;
     }
-    return [];
   }
 
   public async getInitialMovies(genre?: number) {
@@ -53,6 +54,21 @@ export class DataService {
       this.genreList = response.data.genres;
     } catch (error) {
       console.error('Error getting genre list', error);
+      throw error;
+    }
+  }
+
+  public async getMovie(id: number): Promise<MovieDetails> {
+    try {
+      const response = await this.httpService.request(
+        HttpMethod.get,
+        ApiEndpoint.movieDetails(id, ApiLanguage.English)
+      );
+
+      return response.data as MovieDetails;
+    } catch (error) {
+      console.error('Error getting genre list', error);
+      throw error;
     }
   }
 }
