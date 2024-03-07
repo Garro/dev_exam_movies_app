@@ -1,9 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <h1>Movie DB App</h1>
+    <div class="title-padding"><h1>Movie DB App</h1></div>
 
-    <h3>Find your movies</h3>
-    <ion-searchbar></ion-searchbar>
+    <div class="second-title-padding"><h3>Find your movies</h3></div>
+
+    <ion-searchbar placeholder="Search Here ..." color=""></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +13,7 @@
   <div class="flex-content">
     <div class="flex-scroll-list">
       <ion-button
+        shape="round"
         *ngFor="let genre of getGenreList()"
         [id]="'genre-button-' + genre.id"
         [color]="(selectedGenreId === genre.id) ? 'primary' : 'secondary'"
@@ -30,9 +32,13 @@
     <app-movie *ngFor="let movie of getMovieList()" [movie]="movie"></app-movie>
   </ion-list>
 
-  <ion-button (click)="loadMoreMovies()">Load More</ion-button>
+  <ion-button (click)="loadMoreMovies()" class="footer-button"
+    >Load More</ion-button
+  >
 
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
-    <ion-fab-button class="watchlist-fab-button"> Watch List </ion-fab-button>
+    <ion-fab-button class="fab-font">
+      Watch List<ion-icon name="bookmarkOutline"></ion-icon>
+    </ion-fab-button>
   </ion-fab>
 </ion-content>

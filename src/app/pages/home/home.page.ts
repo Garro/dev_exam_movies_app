@@ -1,4 +1,6 @@
 import { CommonModule } from '@angular/common';
+import { addIcons } from 'ionicons';
+import { bookmarkOutline } from 'ionicons/icons';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   RefresherCustomEvent,
@@ -54,9 +56,11 @@ import { Movie } from 'src/app/models/movie.i';
 export class HomePage implements OnInit {
   private data = inject(DataService);
 
-  public selectedGenreId?: number = undefined;
+  constructor() {
+    addIcons({ bookmarkOutline });
+  }
 
-  constructor() {}
+  public selectedGenreId?: number = undefined;
 
   async ngOnInit() {
     try {
